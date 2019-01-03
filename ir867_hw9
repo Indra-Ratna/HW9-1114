@@ -1,0 +1,52 @@
+# Indra 
+# CS - UY 1114
+# 29 Nov 2018
+# Homework 9
+
+respellings = {
+    "teh" : "the",
+    "relevent" : "relevant",
+    "lite" : "light",
+    "lol" : "haha",
+}
+
+def respell(s):
+    sentence = s.split()
+    acc = ""
+    for word in sentence:
+        if word in respellings.keys():
+            acc+= respellings[word]+" "
+        else:
+            acc+=word+" "
+    return acc
+
+def word_positions(s):
+    final = {}
+    sentence = s.split()
+    count = 0
+    for word in sentence:
+        if word not in final.keys():
+            final[word]=[count]
+        else:
+            final[word].append(count)
+        count+=1
+    return final
+
+def commonest(dict):
+    if dict=={}:
+        return ""
+    else:
+        highest = 0
+        word = ""
+        for key in dict.keys():
+            if(len(dict[key])>=highest):
+                highest = len(dict[key])
+                word = key
+    return word
+
+def main():
+    print(respell("I ate teh whole thing lol"))
+    print(word_positions("It was the best of times it was the worst of times"))
+    print(commonest(word_positions("He thought a thought he'd never thought before")))
+main()
+
